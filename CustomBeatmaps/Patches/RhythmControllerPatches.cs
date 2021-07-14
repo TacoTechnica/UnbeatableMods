@@ -121,75 +121,105 @@ namespace CustomBeatmaps
         
         
         [HarmonyPatch(typeof(Rhythm.RhythmController), "Update")]
-        [HarmonyPostfix]
-        static void UpdatePost(Rhythm.RhythmController __instance, ref bool __runOriginal)
+        [HarmonyPrefix]
+        static void UpdatePre(Rhythm.RhythmController __instance, ref bool __runOriginal)
         {
 	        // Manually do stuff after the fact if we are playing.
 	        // This is the big kahoona, literally ended up just
 	        // copy+paste the relevant code and replace fmod music with the custom music player.
 	        if (IsUserSong(__instance))
 	        {
-		        if (Time.timeScale <= 0f)
+		        __runOriginal = false;
+		        if (!__instance.muteSFXOverride)
+		        {
+			        __instance.hitEvent.setVolume(1f);
+			        __instance.hitAssistEvent.setVolume(1f);
+			        __instance.missEvent.setVolume(1f);
+			        __instance.dodgeEvent.setVolume(1f);
+			        __instance.holdTopEvent.setVolume(1f);
+			        __instance.holdLowEvent.setVolume(1f);
+		        }
+		        else
+		        {
+			        __instance.hitEvent.setVolume(0.0f);
+			        __instance.hitAssistEvent.setVolume(0.0f);
+			        __instance.missEvent.setVolume(0.0f);
+			        __instance.dodgeEvent.setVolume(0.0f);
+			        __instance.holdTopEvent.setVolume(0.0f);
+			        __instance.holdLowEvent.setVolume(0.0f);
+		        }
+		        if ((double) Time.timeScale <= 0.0)
 		        {
 			        SongMusicPlayer.SetPaused(true);
+			        __instance.hitEvent.setPaused(true);
+			        __instance.hitAssistEvent.setPaused(true);
+			        __instance.missEvent.setPaused(true);
+			        __instance.dodgeEvent.setPaused(true);
+			        __instance.holdTopEvent.setPaused(true);
+			        __instance.holdLowEvent.setPaused(true);
 		        }
 		        else if (__instance.GetField<bool>("isPlaying"))
 		        {
 			        SongMusicPlayer.SetPaused(false);
+			        __instance.hitEvent.setPaused(false);
+			        __instance.hitAssistEvent.setPaused(false);
+			        __instance.missEvent.setPaused(false);
+			        __instance.dodgeEvent.setPaused(false);
+			        __instance.holdTopEvent.setPaused(false);
+			        __instance.holdLowEvent.setPaused(false);
 		        }
-
-		        SongMusicPlayer.GetPlaybackState(out var state);
+		        __instance.song.countdownPhase = __instance.countdownPhase;
+		        PLAYBACK_STATE state;
+		        SongMusicPlayer.GetPlaybackState(out state);
 		        __instance.song.isPlaying = state == PLAYBACK_STATE.PLAYING;
-		        Rhythm.RhythmController.SongInfo song = __instance.song;
-		        __instance.song.maxCombo = ((song.maxCombo < song.combo) ? song.combo : song.maxCombo);
-		        JeffBezosController.prevAccuracy = (song.accuracy = __instance.score.accuracyScore);
-		        JeffBezosController.prevMaxCombo = song.maxCombo;
-		        JeffBezosController.prevScore = (song.score = (int) __instance.score.totalScore);
-		        JeffBezosController.prevMiss = song.missCount;
-		        JeffBezosController.prevBarely = song.barelyCount;
-		        JeffBezosController.prevOk = song.okCount;
-		        JeffBezosController.prevGood = song.goodCount;
-		        JeffBezosController.prevGreat = song.greatCount;
-		        JeffBezosController.prevPerfect = song.perfectCount;
-		        JeffBezosController.prevAvgLatency =
-			        song.summedPreciseAccuracy / (float) song.numHitsWithPreciseAccuracy;
-		        JeffBezosController.prevSongTitle = __instance.parser.beatmap.metadata.title + "\n" +
-		                                            __instance.parser.beatmap.metadata.version;
-		        if (song.over && !song.isPlaying)
+		        __instance.song.maxCombo = __instance.song.maxCombo < __instance.song.combo ? __instance.song.combo : __instance.song.maxCombo;
+		        JeffBezosController.prevAccuracy = __instance.song.accuracy = __instance.score.accuracyScore;
+		        JeffBezosController.prevMaxCombo = __instance.song.maxCombo;
+		        JeffBezosController.prevScore = __instance.song.score = (int) __instance.score.totalScore;
+		        JeffBezosController.prevMiss = __instance.song.missCount;
+		        JeffBezosController.prevBarely = __instance.song.barelyCount;
+		        JeffBezosController.prevOk = __instance.song.okCount;
+		        JeffBezosController.prevGood = __instance.song.goodCount;
+		        JeffBezosController.prevGreat = __instance.song.greatCount;
+		        JeffBezosController.prevPerfect = __instance.song.perfectCount;
+		        JeffBezosController.prevAvgLatency = __instance.song.summedPreciseAccuracy / (float) __instance.song.numHitsWithPreciseAccuracy;
+		        JeffBezosController.prevSongTitle = __instance.parser.beatmap.metadata.title + "\n" + __instance.parser.beatmap.metadata.version;
+		        if (__instance.song.over && !__instance.song.isPlaying)
 		        {
-			        if (__instance.waitBeforePausingSeconds <= 0f)
+			        if ((double) __instance.waitBeforePausingSeconds <= 0.0)
 			        {
 				        if (__instance.pauseWhenFinished)
 				        {
 					        JeffBezosController.paused = true;
 				        }
-				        else if (__instance.loadLevelWhenFinished != "")
+				        else
 				        {
+					        if (!(__instance.loadLevelWhenFinished != ""))
+						        return;
 					        LevelManager.LoadLevel(__instance.loadLevelWhenFinished);
 				        }
 			        }
-			        else if (!__instance.songSource.isPlaying)
+			        else
 			        {
+				        if (__instance.songSource.isPlaying)
+					        return;
 				        __instance.waitBeforePausingSeconds -= Time.deltaTime;
 			        }
-
-			        return;
 		        }
-
-		        if (song.health <= 0f && !__instance.noFail && !song.gameOver)
+		        else
 		        {
-			        song.gameOver = true;
-			        __instance.waitBeforePausingSeconds = 3f;
-			        JeffBezosController.SetTimeScale(0f, 1f);
-		        }
-
-		        if (song.gameOver)
-		        {
-			        __instance.waitBeforePausingSeconds -= Time.unscaledDeltaTime;
-			        if (__instance.waitBeforePausingSeconds <= 0f)
+			        if ((double) __instance.song.health <= 0.0 && !__instance.noFail && !__instance.song.gameOver)
 			        {
-				        JeffBezosController.paused = true;
+				        __instance.song.gameOver = true;
+				        __instance.waitBeforePausingSeconds = 3f;
+				        JeffBezosController.SetTimeScale(0.0f, 1f);
 			        }
+			        if (!__instance.song.gameOver)
+				        return;
+			        __instance.waitBeforePausingSeconds -= Time.unscaledDeltaTime;
+			        if ((double) __instance.waitBeforePausingSeconds > 0.0)
+				        return;
+			        JeffBezosController.paused = true;
 		        }
 	        }
         }
