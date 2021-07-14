@@ -45,4 +45,22 @@ Lets you easily import custom beatmaps into the game by placing them in a folder
 
 	Different difficulties are selectable the same as any other song.
 
+### Building/Developing
+
+Start by installing the mod without building anything, and get that working.
+
+Then, clone this repo. To make sure the imports line up correctly, clone the repository as a directory within the game's root directory.
+
+So the repo directory should look something like this: `...steamapps/common/UNBEATABLE [white label]/UnbeatableMods`
+
+Building will create a dll file somewhere in `UnbeatableMods/CustomBeatmaps/bin/...` called `CustomBeatmaps.dll`.
+
+Copy this dll over to `UNBEATABLE [white label]/BepInEx/plugins/CustomBeatmaps` and replace the release dll.
+
+Play the game and your changes should appear.
+
+PROTIP: Enable the command line so you can easily view logs, edit `UNBEATABLE [white label]/BepInEx/config/BepInEx.cfg`
+
+
+
 For issues/questions, [consult the Github Issues page](https://github.com/adrisj7/UnbeatableMods/issues)
