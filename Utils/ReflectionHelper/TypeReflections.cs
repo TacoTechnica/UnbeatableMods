@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using JetBrains.Annotations;
 
-namespace CustomBeatmaps.ReflectionHelper
+namespace Utils.ReflectionHelper
 {
     public class TypeReflections
     {
@@ -13,8 +12,8 @@ namespace CustomBeatmaps.ReflectionHelper
         private static readonly BindingFlags _staticBindingFlags =
             BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public;
 
-        private readonly Dictionary<MemberKey, FieldInfo> _fields = new();
-        private readonly Dictionary<MemberKey, MethodInfo> _methods = new();
+        private readonly Dictionary<MemberKey, FieldInfo> _fields = new Dictionary<MemberKey, FieldInfo>();
+        private readonly Dictionary<MemberKey, MethodInfo> _methods = new Dictionary<MemberKey, MethodInfo>();
         private readonly Type _type;
 
         public TypeReflections(Type type)
@@ -22,7 +21,6 @@ namespace CustomBeatmaps.ReflectionHelper
             _type = type;
         }
 
-        [CanBeNull]
         private object InvokeMethodGeneric(object instance, string name, Type[] argumentTypes,
             BindingFlags bindingFlags, params object[] arguments)
         {
@@ -44,26 +42,22 @@ namespace CustomBeatmaps.ReflectionHelper
             return _methods[key].Invoke(instance, arguments);
         }
 
-        [CanBeNull]
         public object InvokeMethod(object instance, string name, Type[] argumentTypes, params object[] arguments)
         {
             return InvokeMethodGeneric(instance, name, argumentTypes, _instanceBindingFlags, arguments);
         }
 
-        [CanBeNull]
         public object InvokeMethod(object instance, string name, params object[] arguments)
         {
             return InvokeMethod(instance, name, null, arguments);
         }
 
-        [CanBeNull]
         public object InvokeMethodStatic(string name, Type[] argumentTypes,
             params object[] arguments)
         {
             return InvokeMethodGeneric(null, name, argumentTypes, _staticBindingFlags, arguments);
         }
 
-        [CanBeNull]
         public object InvokeMethodStatic(string name, params object[] arguments)
         {
             return InvokeMethodStatic(null, name, null, arguments);

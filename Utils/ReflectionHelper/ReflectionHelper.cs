@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CustomBeatmaps.ReflectionHelper
+namespace Utils.ReflectionHelper
 {
     /// <summary>
     ///     Makes reflection invoking less icky.
@@ -12,7 +12,7 @@ namespace CustomBeatmaps.ReflectionHelper
     {
         #region Reflection Cache
 
-        private static readonly Dictionary<Type, TypeReflections> ReflectionCache = new();
+        private static readonly Dictionary<Type, TypeReflections> ReflectionCache = new Dictionary<Type, TypeReflections>();
 
         private static TypeReflections GetReflections(Type type)
         {

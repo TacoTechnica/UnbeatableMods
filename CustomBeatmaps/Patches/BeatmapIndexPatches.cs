@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using CustomBeatmaps.ReflectionHelper;
 using HarmonyLib;
 using Rhythm;
 using UnityEngine;
+using Utils.ReflectionHelper;
 
 namespace CustomBeatmaps.Patches
 {

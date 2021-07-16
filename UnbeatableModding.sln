@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomBeatmaps", "CustomBeatmaps\CustomBeatmaps.csproj", "{31ED9DAC-A089-4FC3-975C-1B53EAD49E92}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainStationFreeroam", "TrainStationFreeroam\TrainStationFreeroam.csproj", "{1E17C995-2513-4203-AC56-C2CEF76AFCBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{DE17A88A-23E3-4441-B0FF-56E28AC9B026}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{31ED9DAC-A089-4FC3-975C-1B53EAD49E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31ED9DAC-A089-4FC3-975C-1B53EAD49E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31ED9DAC-A089-4FC3-975C-1B53EAD49E92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E17C995-2513-4203-AC56-C2CEF76AFCBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E17C995-2513-4203-AC56-C2CEF76AFCBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E17C995-2513-4203-AC56-C2CEF76AFCBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E17C995-2513-4203-AC56-C2CEF76AFCBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE17A88A-23E3-4441-B0FF-56E28AC9B026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE17A88A-23E3-4441-B0FF-56E28AC9B026}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE17A88A-23E3-4441-B0FF-56E28AC9B026}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE17A88A-23E3-4441-B0FF-56E28AC9B026}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

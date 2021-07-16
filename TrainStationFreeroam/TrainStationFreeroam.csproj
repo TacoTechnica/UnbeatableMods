@@ -3,15 +3,14 @@
     <PropertyGroup>
         <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <PackageId>CustomBeatmaps</PackageId>
-        <RootNamespace>CustomBeatmaps</RootNamespace>
+        <PackageId>TrainStationFreeroam</PackageId>
+        <RootNamespace>TrainStationFreeroam</RootNamespace>
     </PropertyGroup>
 
     <PropertyGroup>
         <LangVersion>Preview</LangVersion>
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     </PropertyGroup>
-    <PropertyGroup />
 
     <ItemGroup>
         <Reference Include="UnityEngine">
@@ -115,4 +114,5 @@
     <ItemGroup>
       <ProjectReference Include="..\Utils\Utils.csproj" />
     </ItemGroup>
+    
 </Project>

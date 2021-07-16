@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CustomBeatmaps.ReflectionHelper
+namespace Utils.ReflectionHelper
 {
     public class MemberKey
     {

@@ -1,11 +1,11 @@
 ﻿using System.IO;
 using CustomBeatmaps.Audio;
-using CustomBeatmaps.ReflectionHelper;
 using FMOD.Studio;
 using HarmonyLib;
 using Rhythm;
 using TMPro;
 using UnityEngine;
+using Utils.ReflectionHelper;
 
 namespace CustomBeatmaps.Patches
 {
