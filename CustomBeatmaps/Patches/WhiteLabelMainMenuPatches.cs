@@ -64,7 +64,7 @@ namespace CustomBeatmaps.Patches
             var titleParent = __instance.gameObject.transform.GetChild(1).GetChild(0);
             var versionNumberTransform = titleParent.Find("VersionNumber");
             var versionNumberText = versionNumberTransform.GetComponent<TMP_Text>();
-            versionNumberText.text += " <#0000FFFF> CUSTOM BEATMAPS v1.0 </color>";
+            versionNumberText.text += $" <size=60%><#0000FFFF> CUSTOM BEATMAPS {Mod.Instance.Version} </color></size>";
         }
     }
 }

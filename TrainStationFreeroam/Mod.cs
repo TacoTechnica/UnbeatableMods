@@ -1,6 +1,9 @@
 ﻿using System;
 using BepInEx;
+using HarmonyLib;
+using TrainStationFreeroam.Patches;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TrainStationFreeroam
 {
@@ -10,15 +13,24 @@ namespace TrainStationFreeroam
         // Singleton antipattern
         public static Mod Instance { get; private set; }
 
+        public readonly string Version = "v1.0.0";
+        public readonly string TrainSceneName = "C2_TrainStationNight";
+
         private void Awake()
         {
             Instance = this;
             Debug.Log("Train station Freeroam: Entry!");
-            /*
             Harmony.CreateAndPatchAll(typeof(WhiteLabelMainMenuPatches));
-            Harmony.CreateAndPatchAll(typeof(BeatmapIndexPatches));
-            Harmony.CreateAndPatchAll(typeof(RhythmControllerPatches));
-            */
+
+            // On the train scene, run some extra logic.
+            SceneManager.sceneLoaded += (scene, mode) =>
+            {
+                if (scene.name == TrainSceneName)
+                {
+                    Debug.Log("WE'RE IN!");
+                    TrainSceneInjections.Inject();
+                }
+            };
         }
     }
 }

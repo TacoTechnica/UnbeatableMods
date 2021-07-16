@@ -13,6 +13,8 @@ namespace CustomBeatmaps
         // Singleton antipattern
         public static Mod Instance { get; private set; }
 
+        public readonly string Version = "v1.0.2";
+        
         private void Awake()
         {
             Instance = this;
