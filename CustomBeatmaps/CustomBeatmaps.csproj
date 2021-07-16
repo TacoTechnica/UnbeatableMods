@@ -14,10 +14,10 @@
     <PropertyGroup />
 
     <ItemGroup>
-        <Reference Include="UnityEngine">
+        <Reference Include="BepInEx">
             <HintPath>..\..\BepInEx\core\BepInEx.dll</HintPath>
         </Reference>
-        <Reference Include="UnityEngine">
+        <Reference Include="0Harmony">
             <HintPath>..\..\BepInEx\core\0Harmony.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine">

@@ -18,7 +18,7 @@ namespace TrainStationFreeroam.Patches
             GameObject exampleMenuItem = topLayer.Find("Play").gameObject;
 
             UISelectionButton newItem = GameObject.Instantiate(exampleMenuItem, topLayer).GetComponent<UISelectionButton>();
-            newItem.GetComponent<TMP_Text>().text = $"STATION <size=50%><#0000FFFF> {Mod.Instance.Version} </color></size>";
+            newItem.GetComponent<TMP_Text>().text = $"STATION <size=50%><#0000FFFF>\n{Mod.Instance.Version} </color></size>";
             // Move to the right
             newItem.transform.localPosition += Vector3.forward * 0.8f;
 
