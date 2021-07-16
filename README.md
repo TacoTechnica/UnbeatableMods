@@ -1,5 +1,5 @@
 # UnbeatableMods
-Mods for Unbeatable, including custom beatmap support and... right now that's it.
+Mods for Unbeatable, including **Custom Beatmap Support** and **Night Train Station Freeroam**
 
 
 ## Custom Beatmap Mod
@@ -45,7 +45,21 @@ Lets you easily import custom beatmaps into the game by placing them in a folder
 
 	Different difficulties are selectable the same as any other song.
 
-### Building/Developing
+## Train Station Freeroam Mod
+
+Lets you easily explore the night train station scene
+
+- Enter the train station from the main menu
+- Removed Big Collider that stops you from walking outside the station
+- Custom camera follows Beat if she walks further that can be rotated/zoomed in with the arrow keys
+- Beat can now "sprint" to walk faster with shift (only when exploring the train station scene)
+
+### Installation
+
+Just drag+drop into main game directory, same as CustomBeatmaps.
+
+
+## Building/Developing
 
 Start by installing the mod without building anything, and get that working.
 
@@ -60,6 +74,7 @@ Copy this dll over to `UNBEATABLE [white label]/BepInEx/plugins/CustomBeatmaps` 
 Play the game and your changes should appear.
 
 PROTIP: Enable the command line so you can easily view logs, edit `UNBEATABLE [white label]/BepInEx/config/BepInEx.cfg`
+
 
 
 
