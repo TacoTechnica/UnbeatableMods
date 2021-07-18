@@ -32,7 +32,7 @@ namespace CustomBeatmaps
 
         public bool IsUserSong(string songName)
         {
-            return _userSongsToFilename.ContainsKey(songName);
+            return _userSongsToFilename.ContainsKey(songName) || File.Exists(songName);
         }
 
         private static bool TryExtractBeatmapName(string fileNameNoExt, out string songName, out string difficulty)

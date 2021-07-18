@@ -5,13 +5,13 @@
         <TargetFramework>netstandard2.1</TargetFramework>
         <PackageId>CustomBeatmaps</PackageId>
         <RootNamespace>CustomBeatmaps</RootNamespace>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     </PropertyGroup>
 
     <PropertyGroup>
         <LangVersion>Preview</LangVersion>
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     </PropertyGroup>
-    <PropertyGroup />
 
     <ItemGroup>
         <Reference Include="BepInEx">
@@ -115,4 +115,9 @@
     <ItemGroup>
       <ProjectReference Include="..\Utils\Utils.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ManagedBass" Version="3.0.0" />
+    </ItemGroup>
+
 </Project>

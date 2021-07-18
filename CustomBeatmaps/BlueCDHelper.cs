@@ -1,17 +1,17 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace CustomBeatmaps
 {
-    // Optionally make the CD when playing custom songs blue.
+    // Optionally make the CD when playing custom songs a custom color.
     public static class BlueCDHelper
     {
-        private static readonly Color PAUSE_MENU_CUSTOM_RECORD_COLOR = new(0.2901961f, 0.6709353f, 0.9999f, 1);
-        private static Material _alternativeTextMaterial;
+        private static readonly Dictionary<Color, Material> _alternativeTextMaterial = new Dictionary<Color, Material>();
         private static readonly int TextShaderColor = Shader.PropertyToID("_UnderlayColor");
 
-        public static void ApplyBlueCD()
+        public static void ApplyCDColor(Color color)
         {
             // Add some color to pause menu
             var pauseMenu = Object.FindObjectOfType<PauseMenu>();
@@ -22,26 +22,26 @@ namespace CustomBeatmaps
                 // Set back color
                 var back = pauseMenu.transform.parent.GetChild(0);
                 var backImage = back.GetComponent<Image>();
-                if (backImage != null) backImage.color = PAUSE_MENU_CUSTOM_RECORD_COLOR;
+                if (backImage != null) backImage.color = color;
 
                 // Set text outline color
                 foreach (var menuText in pauseMenu.transform.GetComponentsInChildren<TMP_Text>(true))
                     // Don't set the inner record material info.
                     if (menuText.transform.parent != record)
                     {
-                        if (_alternativeTextMaterial == null)
+                        if (!_alternativeTextMaterial.ContainsKey(color))
                         {
-                            _alternativeTextMaterial = new Material(menuText.fontSharedMaterial);
-                            _alternativeTextMaterial.SetColor(TextShaderColor, PAUSE_MENU_CUSTOM_RECORD_COLOR);
+                            _alternativeTextMaterial[color] = new Material(menuText.fontSharedMaterial);
+                            _alternativeTextMaterial[color].SetColor(TextShaderColor, color);
                         }
 
-                        menuText.fontSharedMaterial = _alternativeTextMaterial;
-                        menuText.material = _alternativeTextMaterial;
+                        menuText.fontSharedMaterial = _alternativeTextMaterial[color];
+                        menuText.material = _alternativeTextMaterial[color];
                     }
 
                 // Set record color
                 var recordImage = record.GetComponent<Image>();
-                recordImage.color = PAUSE_MENU_CUSTOM_RECORD_COLOR;
+                recordImage.color = color;
 
                 /*
                 // Add a silly piece of text saying it's not actually Unbeatable official OST

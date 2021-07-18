@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CustomBeatmaps.Audio
 {
-    public class ManualMusicPlayer
+    public class ManualUnityMusicPlayer : IMusicPlayer
     {
         private DummyCoroutineRunner _coroutineRunner;
         private string _filePath;
@@ -21,11 +21,7 @@ namespace CustomBeatmaps.Audio
             _gameObject = new GameObject();
             _coroutineRunner = _gameObject.AddComponent<DummyCoroutineRunner>();
             _source = _gameObject.AddComponent<AudioSource>();
-            var mixer = Object.FindObjectOfType<JeffBezosController>().masterMixer;
-            /*
-             * Groups: Master, Music, Environment, SFX, UI
-             */
-            _source.outputAudioMixerGroup = mixer.FindMatchingGroups("Music")[0];
+            _source.outputAudioMixerGroup = Mod.MusicMixerGroup;
             _source.volume = volumeMultipler;
         }
 
@@ -91,6 +87,16 @@ namespace CustomBeatmaps.Audio
         public bool IsValid()
         {
             return _source != null;
+        }
+
+        public void Update()
+        {
+            // Do nothing
+        }
+
+        public void SeekTimelinePosition(int seek)
+        {
+            _source.time = (float)(seek) / 1000f;
         }
 
         private IEnumerator PlayBackgroundMusic(string file)
