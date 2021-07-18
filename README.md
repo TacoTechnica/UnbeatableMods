@@ -1,6 +1,12 @@
 # UnbeatableMods
 Mods for Unbeatable, including **Custom Beatmap Support** and **Night Train Station Freeroam**
 
+## Latest Releases/Downloads
+
+[Custom Beatmaps](https://github.com/adrisj7/UnbeatableMods/releases/tag/1.2.0)
+
+[Train Station Freeroam](https://github.com/adrisj7/UnbeatableMods/releases/tag/1.1.0)
+
 
 ## Custom Beatmap Mod
 
