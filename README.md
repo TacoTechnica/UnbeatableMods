@@ -6,6 +6,10 @@ Mods for Unbeatable, including **Custom Beatmap Support** and **Night Train Stat
 
 Lets you easily import custom beatmaps into the game by placing them in a folder.
 
+Also adds in a special "Edit" mode that lets you preview a beatmap and edit in OSU
+at the same time, viewing OSU changes live in UNBEATABLE.
+(This excellent idea is brought to you by "Jane from StateDog")
+
 ### Installation
 
 1) [Download the latest release](https://github.com/adrisj7/UnbeatableMods/releases)
@@ -28,14 +32,17 @@ Lets you easily import custom beatmaps into the game by placing them in a folder
 	Check out the included example file, containing one of each note. Open it up in OSU and play it in the game.
 	Make sure you're editing in OSUMania mode (advanced->Allowed Modes), with Six Keys (Difficulty -> Key Count)
 
-6) Copy the beatmap into `UNBEATABLE [white label]_Data/StreamingAssets/USER_BEATMAPS`
+6) (Optional) Preview beatmap in Unbeatable while editing in OSU.
+
+	In the main menu select "Play" and click the "Edit View" button in the bottom right corner.
+	Click the name of the beatmap you want to preview.
+   
+	You may do this while OSU is open and edit the beatmap in OSU. Whenever you save in OSU, your
+	changes will appear in Unbeatable.
+
+7) Once you are done with your beatmap, copy the beatmap into `UNBEATABLE [white label]_Data/StreamingAssets/USER_BEATMAPS`
 
 	If `USER_BEATMAPS` doesn't exist, you should create that directory yourself.
-
-7) Convert your music file from Mp3 to wav/ogg and drag it into the same directory above
-
-	Sadly Mp3s are not supported because Unity can't stream Mp3s (for stupid legal reasons).
-	Mp3 support may come in the future, but will require extra programming tomfoolery
 
 8) Edit the `AudioFilename` parameter in your OSU beatmap file to point to your music file, relative to StreamingAssets
 
