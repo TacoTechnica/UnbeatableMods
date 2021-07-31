@@ -3,6 +3,8 @@ Mods for Unbeatable, including **Custom Beatmap Support** and **Night Train Stat
 
 ## Latest Releases/Downloads
 
+**NOTE: Mods will NOT work with Unbeatable's latest opt-in beta. If that's currently installed, you must opt out of the beta for the mods to work.**
+
 [Custom Beatmaps](https://github.com/adrisj7/UnbeatableMods/releases/tag/1.3.0)
 
 [Train Station Freeroam](https://github.com/adrisj7/UnbeatableMods/releases/tag/1.1.0)
