@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Rhythm;
 using UnityEngine;
+using System.Linq;
 
 namespace CustomBeatmaps
 {
@@ -65,33 +66,41 @@ namespace CustomBeatmaps
                     {
                         var fileName = Path.GetFileNameWithoutExtension(fpath);
                         Debug.Log($"FOUND CUSTOM BEATMAP PATH: {fileName}");
-                        string songName, difficulty;
-                        if (TryExtractBeatmapName(fileName, out songName, out difficulty))
+                        var text = File.ReadAllText(fpath);
+
+
+                        var txtLines = File.ReadAllLines(fpath);
+
+                        string songName = fileName;
+                        string difficulty = "Easy";
+
+                        foreach (var line in txtLines)
                         {
-                            if (isDifficultySelectable.Invoke(difficulty))
+                            if (line.Contains("Version:"))
                             {
-                                var text = File.ReadAllText(fpath);
-                                var info = new BeatmapInfo(new TextAsset(text), songName, difficulty);
-                                _userBeatmaps.Add(info);
-                                if (!_userSongsToFilename.ContainsKey(songName))
-                                {
-                                    // We have a new song, add it.
-                                    var beatmapParserEngine = new BeatmapParserEngine();
-                                    var beatmap = ScriptableObject.CreateInstance<Beatmap>();
-                                    beatmapParserEngine.ReadBeatmap(info.text, ref beatmap);
-                                    var songFilename = beatmap.general.audioFilename;
-                                    _userSongsToFilename[songName] = songFilename;
-                                }
-                            }
-                            else
+                                difficulty = line;
+                            } else if (line.Contains("Title:"))
                             {
-                                Debug.LogWarning($"Invalid difficulty found: {difficulty}");
+                                songName = line;
                             }
                         }
-                        else
+
+
+                        var info = new BeatmapInfo(new TextAsset(text), songName, difficulty);
+
+                        var diffs = BeatmapIndex.defaultIndex.difficulties.ToList();
+                        if (!diffs.Contains(difficulty)) diffs.Add(difficulty);
+                        BeatmapIndex.defaultIndex.difficulties = diffs.ToArray();
+
+                        _userBeatmaps.Add(info);
+                        if (!_userSongsToFilename.ContainsKey(songName))
                         {
-                            Debug.LogWarning(
-                                $"Invalid beatmap filename: {fileName}. Format needed: \"SONG NAME[DIFFICULTY]\"");
+                            // We have a new song, add it.
+                            var beatmapParserEngine = new BeatmapParserEngine();
+                            var beatmap = ScriptableObject.CreateInstance<Beatmap>();
+                            beatmapParserEngine.ReadBeatmap(info.text, ref beatmap);
+                            var songFilename = beatmap.general.audioFilename;
+                            _userSongsToFilename[songName] = songFilename;
                         }
                     }
             }

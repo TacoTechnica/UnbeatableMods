@@ -1,10 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomBeatmaps", "CustomBeatmaps\CustomBeatmaps.csproj", "{31ED9DAC-A089-4FC3-975C-1B53EAD49E92}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomBeatmaps", "CustomBeatmaps\CustomBeatmaps.csproj", "{31ED9DAC-A089-4FC3-975C-1B53EAD49E92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainStationFreeroam", "TrainStationFreeroam\TrainStationFreeroam.csproj", "{1E17C995-2513-4203-AC56-C2CEF76AFCBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainStationFreeroam", "TrainStationFreeroam\TrainStationFreeroam.csproj", "{1E17C995-2513-4203-AC56-C2CEF76AFCBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{DE17A88A-23E3-4441-B0FF-56E28AC9B026}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils", "Utils\Utils.csproj", "{DE17A88A-23E3-4441-B0FF-56E28AC9B026}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainMenuEdit", "MainMenuEdit\MainMenuEdit.csproj", "{4BC5FD5A-D0DA-4B65-8D55-2BF85A24FF0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +29,15 @@ Global
 		{DE17A88A-23E3-4441-B0FF-56E28AC9B026}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE17A88A-23E3-4441-B0FF-56E28AC9B026}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE17A88A-23E3-4441-B0FF-56E28AC9B026}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BC5FD5A-D0DA-4B65-8D55-2BF85A24FF0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BC5FD5A-D0DA-4B65-8D55-2BF85A24FF0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BC5FD5A-D0DA-4B65-8D55-2BF85A24FF0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BC5FD5A-D0DA-4B65-8D55-2BF85A24FF0E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {73C522ED-352D-4D3F-9449-A44A53DAB9BB}
 	EndGlobalSection
 EndGlobal
