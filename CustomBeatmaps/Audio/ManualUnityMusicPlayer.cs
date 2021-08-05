@@ -27,8 +27,11 @@ namespace CustomBeatmaps.Audio
 
         public void Start()
         {
-            if (_loadPlayRoutine != null) _coroutineRunner.StopCoroutine(_loadPlayRoutine);
-            _loadPlayRoutine = _coroutineRunner.StartCoroutine(PlayBackgroundMusic(_filePath));
+            if (_source != null)
+            {
+                if (_loadPlayRoutine != null) _coroutineRunner.StopCoroutine(_loadPlayRoutine);
+                _loadPlayRoutine = _coroutineRunner.StartCoroutine(PlayBackgroundMusic(_filePath));
+            }
         }
 
         public void SetPaused(bool paused)
@@ -71,17 +74,34 @@ namespace CustomBeatmaps.Audio
 
         public void GetPlaybackState(out PLAYBACK_STATE state)
         {
-            state = _source.isPlaying ? PLAYBACK_STATE.PLAYING : PLAYBACK_STATE.STOPPED;
+            if (_source != null)
+            {
+                state = _source.isPlaying ? PLAYBACK_STATE.PLAYING : PLAYBACK_STATE.STOPPED;
+            }
+            else
+            {
+                state = PLAYBACK_STATE.STOPPED;
+            }
         }
 
         public void SetPitch(float pitch)
         {
-            _source.pitch = pitch;
+            if (_source != null)
+            {
+                _source.pitch = pitch;
+            }
         }
 
         public void GetTimelinePosition(out int position)
         {
-            position = (int) (_source.time * 1000);
+            if (_source != null)
+            {
+                position = (int) (_source.time * 1000);
+            }
+            else
+            {
+                position = 0;
+            }
         }
 
         public bool IsValid()
@@ -96,7 +116,10 @@ namespace CustomBeatmaps.Audio
 
         public void SeekTimelinePosition(int seek)
         {
-            _source.time = (float)(seek) / 1000f;
+            if (_source != null)
+            {
+                _source.time = (float) (seek) / 1000f;
+            }
         }
 
         private IEnumerator PlayBackgroundMusic(string file)
