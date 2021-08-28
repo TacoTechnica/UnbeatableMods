@@ -1,4 +1,8 @@
+## UnbeatableMods is now DEPRECATED! These mods will NOT work with the latest patch for UNBEATABLE.
+Please check out [The new and improved continuation of this project](https://github.com/TacoDogUnbeatableThing/CustomBeatmapsV2)
+
 # UnbeatableMods
+
 Mods for Unbeatable, including **Custom Beatmap Support** and **Night Train Station Freeroam**
 
 ## Latest Releases/Downloads
